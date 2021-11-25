@@ -7,76 +7,76 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.gestioneassicurati.exception.AssicuratoNotFoundException;
-import it.prova.gestioneassicurati.model.Assicurati.Assicurato;
+import it.prova.gestioneassicurati.model.Assicurato;
 import it.prova.gestioneassicurati.repository.AssicuratoRepository;
 
 @Service
 public class AssicuratoServiceImpl implements AssicuratoService {
 
 	@Autowired
-	private AssicuratoRepository associatoRepository;
+	private AssicuratoRepository assicuratoRepository;
 
 	@Override
 	public List<Assicurato> listAll() {
-		return (List<Assicurato>) associatoRepository.findAll();
+		return (List<Assicurato>) assicuratoRepository.findAll();
 	}
 
 	@Override
 	public Assicurato cariscaSingoloElemento(Long id) {
-		return associatoRepository.findById(id).orElse(null);
+		return assicuratoRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional
 	public Assicurato inserisciNuovo(Assicurato transientInstance) {
-		return associatoRepository.save(transientInstance);
+		return assicuratoRepository.save(transientInstance);
 	}
 
 	@Override
 	public Assicurato get(Long idInput) {
-		return associatoRepository.findById(idInput)
+		return assicuratoRepository.findById(idInput)
 				.orElseThrow(() -> new AssicuratoNotFoundException("Element with id " + idInput + " not found."));
 	}
 
 	@Override
 	public Assicurato save(Assicurato input) {
-		return associatoRepository.save(input);
+		return assicuratoRepository.save(input);
 	}
 
 	@Override
 	public void delete(Assicurato input) {
-		associatoRepository.delete(input);
+		assicuratoRepository.delete(input);
 	}
 
 	@Override
 	public Assicurato findByCodiceFiscale(String codiceFiscale) {
 		
-		return associatoRepository.findByCodiceFiscale(codiceFiscale);
+		return assicuratoRepository.findByCodiceFiscale(codiceFiscale);
 	}
 
 //	@Override
-//	public Page<Assicurato> searchAndPaginate(Assicurato associatoExample, Integer pageNo, Integer pageSize, String sortBy) {
+//	public Page<Assicurato> searchAndPaginate(Assicurato assicuratoExample, Integer pageNo, Integer pageSize, String sortBy) {
 //
 //		Specification<Assicurato> specificationCriteria = (root, query, cb) -> {
 //
 //			List<Predicate> predicates = new ArrayList<Predicate>();
 //
-//			if (!StringUtils.isEmpty(associatoExample.getNome()))
-//				predicates.add(cb.like(cb.upper(root.get("nome")), "%" + associatoExample.getNome().toUpperCase() + "%"));
+//			if (!StringUtils.isEmpty(assicuratoExample.getNome()))
+//				predicates.add(cb.like(cb.upper(root.get("nome")), "%" + assicuratoExample.getNome().toUpperCase() + "%"));
 //
-//			if (!StringUtils.isEmpty(associatoExample.getCognome()))
+//			if (!StringUtils.isEmpty(assicuratoExample.getCognome()))
 //				predicates.add(
-//						cb.like(cb.upper(root.get("cognome")), "%" + associatoExample.getCognome().toUpperCase() + "%"));
+//						cb.like(cb.upper(root.get("cognome")), "%" + assicuratoExample.getCognome().toUpperCase() + "%"));
 //
-//			if (!StringUtils.isEmpty(associatoExample.getCodiceDipendente()))
+//			if (!StringUtils.isEmpty(assicuratoExample.getCodiceDipendente()))
 //				predicates.add(cb.like(cb.upper(root.get("codiceDipendente")),
-//						"%" + associatoExample.getCodiceDipendente().toUpperCase() + "%"));
-//			if (associatoExample.isInServizio())
+//						"%" + assicuratoExample.getCodiceDipendente().toUpperCase() + "%"));
+//			if (assicuratoExample.isInServizio())
 //				predicates.add(cb.isTrue(root.get("inServizio")));
 //			else
 //				predicates.add(cb.isFalse(root.get("inServizio")));
 //
-//			if (associatoExample.isInVisita())
+//			if (assicuratoExample.isInVisita())
 //				predicates.add(cb.isTrue(root.get("inVisita")));
 //			else
 //				predicates.add(cb.isFalse(root.get("inVisita")));
@@ -86,7 +86,7 @@ public class AssicuratoServiceImpl implements AssicuratoService {
 //
 //		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
 //
-//		return associatoRepository.findAll(specificationCriteria, paging);
+//		return assicuratoRepository.findAll(specificationCriteria, paging);
 //	}
 
 }

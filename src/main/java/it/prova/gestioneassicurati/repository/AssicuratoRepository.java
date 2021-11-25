@@ -1,13 +1,12 @@
 package it.prova.gestioneassicurati.repository;
 
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.CrudRepository;
 
-import it.prova.gestioneassicurati.model.Assicurati.Assicurato;
-
+import it.prova.gestioneassicurati.model.Assicurato;
 
 
-public interface AssicuratoRepository extends PagingAndSortingRepository<Assicurato, Long>, JpaSpecificationExecutor<Assicurato> {
+
+public interface AssicuratoRepository extends CrudRepository<Assicurato, Long> {
 
 	Assicurato findByCodiceFiscale(String codiceFiscale);
 
