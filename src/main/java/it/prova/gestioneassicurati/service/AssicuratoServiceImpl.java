@@ -50,43 +50,8 @@ public class AssicuratoServiceImpl implements AssicuratoService {
 
 	@Override
 	public Assicurato findByCodiceFiscale(String codiceFiscale) {
-		
+
 		return assicuratoRepository.findByCodiceFiscale(codiceFiscale);
 	}
-
-//	@Override
-//	public Page<Assicurato> searchAndPaginate(Assicurato assicuratoExample, Integer pageNo, Integer pageSize, String sortBy) {
-//
-//		Specification<Assicurato> specificationCriteria = (root, query, cb) -> {
-//
-//			List<Predicate> predicates = new ArrayList<Predicate>();
-//
-//			if (!StringUtils.isEmpty(assicuratoExample.getNome()))
-//				predicates.add(cb.like(cb.upper(root.get("nome")), "%" + assicuratoExample.getNome().toUpperCase() + "%"));
-//
-//			if (!StringUtils.isEmpty(assicuratoExample.getCognome()))
-//				predicates.add(
-//						cb.like(cb.upper(root.get("cognome")), "%" + assicuratoExample.getCognome().toUpperCase() + "%"));
-//
-//			if (!StringUtils.isEmpty(assicuratoExample.getCodiceDipendente()))
-//				predicates.add(cb.like(cb.upper(root.get("codiceDipendente")),
-//						"%" + assicuratoExample.getCodiceDipendente().toUpperCase() + "%"));
-//			if (assicuratoExample.isInServizio())
-//				predicates.add(cb.isTrue(root.get("inServizio")));
-//			else
-//				predicates.add(cb.isFalse(root.get("inServizio")));
-//
-//			if (assicuratoExample.isInVisita())
-//				predicates.add(cb.isTrue(root.get("inVisita")));
-//			else
-//				predicates.add(cb.isFalse(root.get("inVisita")));
-//
-//			return cb.and(predicates.toArray(new Predicate[predicates.size()]));
-//		};
-//
-//		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-//
-//		return assicuratoRepository.findAll(specificationCriteria, paging);
-//	}
 
 }

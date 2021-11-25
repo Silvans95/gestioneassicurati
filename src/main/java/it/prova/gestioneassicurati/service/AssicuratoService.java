@@ -16,8 +16,6 @@ public interface AssicuratoService {
 
 	public Assicurato cariscaSingoloElemento(Long id);
 
-//	public Page<Assicurato> searchAndPaginate(Assicurato automobileExample, Integer pageNo, Integer pageSize, String sortBy);
-
 	public Assicurato get(Long idInput);
 
 	public Assicurato save(Assicurato input);
