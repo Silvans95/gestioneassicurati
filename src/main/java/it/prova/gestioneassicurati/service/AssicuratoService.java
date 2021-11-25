@@ -22,6 +22,8 @@ public interface AssicuratoService {
 	public Assicurato save(Assicurato input);
 
 	public void delete(Assicurato input);
+
+	public Assicurato findByCodiceFiscale(String codiceFiscale);
 	
 
 	

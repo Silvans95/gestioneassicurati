@@ -79,9 +79,8 @@ public class AssicuratoRestController {
 	public void letturaFileXmlPerMetodiDiBusiness() {
 
 		try {
-
 			File xmlFile = new File(
-					"C:\\Corso\\ws_eclipse\\gestioneassicurati\\src\\main\\java\\it\\prova\\gestioneassicurati\\xml");
+					"C:\\Corso\\ws_eclipse\\gestioneassicurati\\src\\main\\java\\it\\prova\\gestioneassicurati\\MARSHALL\\assicurato.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Assicurati.class);
 
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -89,9 +88,21 @@ public class AssicuratoRestController {
 
 			System.out.println("Lista Assicurati:");
 			List<Assicurato> list = que.getAssicurato();
-			for (Assicurato ans : list)
+			for (Assicurato ans : list) {
 				System.out.println(ans.getNome());
+				if (ans.getNumerosinistri() < 0 || ans.getNumerosinistri() > 10) {
+					xmlFile.renameTo(new File(
+							"C:\\Corso\\ws_eclipse\\gestioneassicurati\\src\\main\\java\\it\\prova\\gestioneassicurati\\scarti\\assicurato.xml"));
+				}
+				if (assicuratoService.findByCodiceFiscale(ans.getCodicefiscale()) != null) {
 
+					Assicurato assicurato = assicuratoService.findByCodiceFiscale(ans.getCodicefiscale());
+					assicurato.setNumerosinistri(assicurato.getNumerosinistri() + ans.getNumerosinistri());
+
+				}
+				xmlFile.renameTo(new File(
+						"C:\\Corso\\ws_eclipse\\gestioneassicurati\\src\\main\\java\\it\\prova\\gestioneassicurati\\processed\\assicurato.xml"));
+			}
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}

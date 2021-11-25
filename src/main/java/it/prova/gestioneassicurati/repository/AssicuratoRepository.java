@@ -9,6 +9,8 @@ import it.prova.gestioneassicurati.model.Assicurati.Assicurato;
 
 public interface AssicuratoRepository extends PagingAndSortingRepository<Assicurato, Long>, JpaSpecificationExecutor<Assicurato> {
 
+	Assicurato findByCodiceFiscale(String codiceFiscale);
+
 
 	
 }

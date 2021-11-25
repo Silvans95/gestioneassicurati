@@ -48,6 +48,12 @@ public class AssicuratoServiceImpl implements AssicuratoService {
 		associatoRepository.delete(input);
 	}
 
+	@Override
+	public Assicurato findByCodiceFiscale(String codiceFiscale) {
+		
+		return associatoRepository.findByCodiceFiscale(codiceFiscale);
+	}
+
 //	@Override
 //	public Page<Assicurato> searchAndPaginate(Assicurato associatoExample, Integer pageNo, Integer pageSize, String sortBy) {
 //

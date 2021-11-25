@@ -136,7 +136,7 @@ public class Assicurati {
         @XmlElement(required = true)
         protected String codicefiscale;
         @XmlElement(required = true)
-        protected BigInteger numerosinistri;
+        protected Integer numerosinistri;
 
         /**
          * Recupera il valore della propriet� nome.
@@ -242,7 +242,7 @@ public class Assicurati {
          *     {@link BigInteger }
          *     
          */
-        public BigInteger getNumerosinistri() {
+        public Integer getNumerosinistri() {
             return numerosinistri;
         }
 
@@ -254,7 +254,7 @@ public class Assicurati {
          *     {@link BigInteger }
          *     
          */
-        public void setNumerosinistri(BigInteger value) {
+        public void setNumerosinistri(Integer value) {
             this.numerosinistri = value;
         }
 
