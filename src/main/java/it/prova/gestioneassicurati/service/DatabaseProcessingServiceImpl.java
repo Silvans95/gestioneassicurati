@@ -25,12 +25,14 @@ public class DatabaseProcessingServiceImpl implements DatabaseProcessingService 
 		for (Assicurati.Assicurato ans : list) {
 			if (ans.getNumerosinistri() < 0 || ans.getNumerosinistri() > 10) {
 				fileProcessingService.rejected();
+				return;
 			} else {
 				if (!StringUtils.isEmpty(assicuratoService.findByCodiceFiscale(ans.getCodiceFiscale()))) {
 					Assicurato assicurato = assicuratoService.findByCodiceFiscale(ans.getCodiceFiscale());
 					System.out.println("sono entrato qui ed ho trovato" + assicurato.getNome());
 					assicurato.setNumeroSinistri(assicurato.getNumeroSinistri() + ans.getNumerosinistri());
 					assicuratoService.inserisciNuovo(assicurato);
+
 				} else {
 
 					Assicurato assicurato = new Assicurato(ans.getNome(), ans.getCognome(),
@@ -38,7 +40,7 @@ public class DatabaseProcessingServiceImpl implements DatabaseProcessingService 
 							ans.getNumerosinistri());
 					assicuratoService.inserisciNuovo(assicurato);
 				}
-
+				fileProcessingService.processed();
 			}
 		}
 	}

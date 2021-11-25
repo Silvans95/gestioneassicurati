@@ -30,6 +30,11 @@ public class AssicuratoRestController {
 	@Autowired
 	DatabaseProcessingService databaseProcessingService;
 
+	@GetMapping("/list")
+	public List<Assicurato> getAll() {
+		return assicuratoService.listAll();
+	}
+
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public void letturaFileXmlPerMetodiDiBusiness() {
@@ -38,7 +43,5 @@ public class AssicuratoRestController {
 
 		databaseProcessingService.databaseProcessing(assicurati);
 
-		fileProcessingService.processed();
 	}
-
 }
