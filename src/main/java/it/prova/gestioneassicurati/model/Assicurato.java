@@ -15,7 +15,7 @@ public class Assicurato {
 	Long id;
 	String nome;
 	String cognome;
-	Date dataDINascita;
+	Date dataDiNascita;
 	String codiceFiscale;
 	Integer numeroSinistri;
 
@@ -26,7 +26,7 @@ public class Assicurato {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
-		this.dataDINascita = dataDINascita;
+		this.dataDiNascita = dataDINascita;
 		this.codiceFiscale = codiceFiscale;
 		this.numeroSinistri = numeroSinistri;
 	}
@@ -37,7 +37,7 @@ public class Assicurato {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
-		this.dataDINascita = dataDINascita;
+		this.dataDiNascita = dataDINascita;
 		this.codiceFiscale = codiceFiscale;
 		this.numeroSinistri = numeroSinistri;
 	}
@@ -67,11 +67,11 @@ public class Assicurato {
 	}
 
 	public Date getDataDINascita() {
-		return dataDINascita;
+		return dataDiNascita;
 	}
 
 	public void setDataDINascita(Date dataDINascita) {
-		this.dataDINascita = dataDINascita;
+		this.dataDiNascita = dataDINascita;
 	}
 
 	public String getCodiceFiscale() {

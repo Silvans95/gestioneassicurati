@@ -6,7 +6,7 @@
 //
 
 
-package it.prova.gestioneassicurati.model;
+package it.prova.gestioneassicurati.xml;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

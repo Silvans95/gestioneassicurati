@@ -6,7 +6,7 @@
 //
 
 
-package it.prova.gestioneassicurati.model;
+package it.prova.gestioneassicurati.xml;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="cognome" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="datadinascita" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *                   &lt;element name="codicefiscale" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *                   &lt;element name="codiceFiscale" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="numerosinistri" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
@@ -108,7 +108,7 @@ public class Assicurati {
      *         &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="cognome" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="datadinascita" type="{http://www.w3.org/2001/XMLSchema}date"/>
-     *         &lt;element name="codicefiscale" type="{http://www.w3.org/2001/XMLSchema}string"/>
+     *         &lt;element name="codiceFiscale" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="numerosinistri" type="{http://www.w3.org/2001/XMLSchema}integer"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
@@ -123,7 +123,7 @@ public class Assicurati {
         "nome",
         "cognome",
         "datadinascita",
-        "codicefiscale",
+        "codiceFiscale",
         "numerosinistri"
     })
     public static class Assicurato {
@@ -136,7 +136,7 @@ public class Assicurati {
         @XmlSchemaType(name = "date")
         protected XMLGregorianCalendar datadinascita;
         @XmlElement(required = true)
-        protected String codicefiscale;
+        protected String codiceFiscale;
         @XmlElement(required = true)
         protected Integer numerosinistri;
 
@@ -213,27 +213,27 @@ public class Assicurati {
         }
 
         /**
-         * Recupera il valore della propriet� codicefiscale.
+         * Recupera il valore della propriet� codiceFiscale.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getCodicefiscale() {
-            return codicefiscale;
+        public String getCodiceFiscale() {
+            return codiceFiscale;
         }
 
         /**
-         * Imposta il valore della propriet� codicefiscale.
+         * Imposta il valore della propriet� codiceFiscale.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setCodicefiscale(String value) {
-            this.codicefiscale = value;
+        public void setCodiceFiscale(String value) {
+            this.codiceFiscale = value;
         }
 
         /**
