@@ -7,6 +7,6 @@ import it.prova.gestioneassicurati.xml.Assicurati;
 @Service
 public interface DatabaseProcessingService {
 
-	public void databaseProcessing(Assicurati assicurati);
+	public void databaseProcessing(Assicurati assicurati, String percorso);
 	
 }

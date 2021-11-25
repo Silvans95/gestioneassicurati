@@ -18,21 +18,19 @@ public class DatabaseProcessingServiceImpl implements DatabaseProcessingService 
 	@Autowired
 	FileProcessingService fileProcessingService;
 
-	public void databaseProcessing(Assicurati assicurati) {
+	public void databaseProcessing(Assicurati assicurati, String percorso) {
 
 		List<Assicurati.Assicurato> list = assicurati.getAssicurato();
 
 		for (Assicurati.Assicurato ans : list) {
 			if (ans.getNumerosinistri() < 0 || ans.getNumerosinistri() > 10) {
-				fileProcessingService.rejected();
+				fileProcessingService.rejected(percorso);
 				return;
 			} else {
 				if (!StringUtils.isEmpty(assicuratoService.findByCodiceFiscale(ans.getCodiceFiscale()))) {
 					Assicurato assicurato = assicuratoService.findByCodiceFiscale(ans.getCodiceFiscale());
-					System.out.println("sono entrato qui ed ho trovato" + assicurato.getNome());
 					assicurato.setNumeroSinistri(assicurato.getNumeroSinistri() + ans.getNumerosinistri());
 					assicuratoService.inserisciNuovo(assicurato);
-
 				} else {
 
 					Assicurato assicurato = new Assicurato(ans.getNome(), ans.getCognome(),
@@ -40,7 +38,7 @@ public class DatabaseProcessingServiceImpl implements DatabaseProcessingService 
 							ans.getNumerosinistri());
 					assicuratoService.inserisciNuovo(assicurato);
 				}
-				fileProcessingService.processed();
+				fileProcessingService.processed(percorso);
 			}
 		}
 	}

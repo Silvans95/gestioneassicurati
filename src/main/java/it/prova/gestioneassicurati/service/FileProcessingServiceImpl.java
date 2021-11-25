@@ -1,6 +1,7 @@
 package it.prova.gestioneassicurati.service;
 
 import java.io.File;
+import java.util.Date;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -13,11 +14,9 @@ import it.prova.gestioneassicurati.xml.Assicurati;
 @Service
 public class FileProcessingServiceImpl implements FileProcessingService {
 
-	public Assicurati unmarshalling() {
+	public Assicurati unmarshalling(String percorsoCartella) {
 		try {
-
-			File xmlFile = new File(
-					"C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\startingFolder\\assicurato.xml");
+			File xmlFile = new File(percorsoCartella);
 			JAXBContext jaxbContext;
 			jaxbContext = JAXBContext.newInstance(Assicurati.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -29,14 +28,14 @@ public class FileProcessingServiceImpl implements FileProcessingService {
 		}
 	}
 
-	public void rejected() {
-		File xmlFile = new File("C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\startingFolder\\assicurato.xml");
-		xmlFile.renameTo(new File("C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\rejected\\assicurato.xml"));
+	public void rejected(String percorso) {
+		File xmlFile = new File(percorso);
+		xmlFile.renameTo(new File("C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\rejected\\" + xmlFile.getName()));
 	}
 
-	public void processed() {
-		File xmlFile = new File("C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\startingFolder\\assicurato.xml");
-		xmlFile.renameTo(new File("C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\processed\\assicurato.xml"));
+	public void processed(String percorso) {
+		File xmlFile = new File(percorso);
+		xmlFile.renameTo(new File("C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\processed\\" + xmlFile.getName()));
 
 	}
 }

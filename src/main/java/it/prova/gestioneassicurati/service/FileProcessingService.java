@@ -7,9 +7,9 @@ import it.prova.gestioneassicurati.xml.Assicurati;
 @Service
 public interface FileProcessingService {
 
-	public Assicurati unmarshalling();
+	public Assicurati unmarshalling(String percorsoCartella);
 	
-	public void rejected();
+	public void rejected(String percorso);
 	
-	public void processed();
+	public void processed(String percorso);
 }

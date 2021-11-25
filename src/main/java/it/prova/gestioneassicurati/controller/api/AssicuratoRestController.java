@@ -1,5 +1,6 @@
 package it.prova.gestioneassicurati.controller.api;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,15 @@ public class AssicuratoRestController {
 	@ResponseStatus(HttpStatus.OK)
 	public void letturaFileXmlPerMetodiDiBusiness() {
 
-		Assicurati assicurati = fileProcessingService.unmarshalling();
+		final File folder = new File("C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\startingFolder\\");
 
-		databaseProcessingService.databaseProcessing(assicurati);
+		for (final File fileEntry : folder.listFiles()) {
+			String percorso = "C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\startingFolder\\" + fileEntry.getName();
+			Assicurati assicurati = fileProcessingService
+					.unmarshalling(percorso);
+
+			databaseProcessingService.databaseProcessing(assicurati, percorso);
+		}
 
 	}
 }
