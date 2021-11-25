@@ -1,0 +1,41 @@
+<assicurati>
+	<assicurato>
+		<nome>Silvano</nome>
+		<cognome>Paloni</cognome>
+		<datadinascita>1995-04-08</datadinascita>
+		<codicefiscale>plnsvn95d08h501r</codicefiscale>
+		<numerosinistri>50</numerosinistri>
+	</assicurato>
+	
+	<assicurato>
+		<nome>Vincenzo</nome>
+		<cognome>Pipitone</cognome>
+		<datadinascita>1997-05-26</datadinascita>
+		<codicefiscale>pipitonecodice</codicefiscale>
+		<numerosinistri>0</numerosinistri>
+	</assicurato>
+	
+	<assicurato>
+		<nome>Lorenzo</nome>
+		<cognome>Baldi</cognome>
+		<datadinascita>2000-04-08</datadinascita>
+		<codicefiscale>baldicodice</codicefiscale>
+		<numerosinistri>10</numerosinistri>
+	</assicurato>
+	
+	<assicurato>
+		<nome>Stefan</nome>
+		<cognome>Beclea</cognome>
+		<datadinascita>2001-03-15</datadinascita>
+		<codicefiscale>becleacodice</codicefiscale>
+		<numerosinistri>50</numerosinistri>
+	</assicurato>
+	
+	<assicurato>
+		<nome>Leonardo</nome>
+		<cognome>Iappelli</cognome>
+		<datadinascita>2001-03-15</datadinascita>
+		<codicefiscale>iappellicodice</codicefiscale>
+		<numerosinistri>1</numerosinistri>
+	</assicurato>
+</assicurati>
