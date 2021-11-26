@@ -43,11 +43,9 @@ public class AssicuratoRestController {
 		final File folder = new File("C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\startingFolder\\");
 
 		for (final File fileEntry : folder.listFiles()) {
-			String percorso = "C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\startingFolder\\" + fileEntry.getName();
-			Assicurati assicurati = fileProcessingService
-					.unmarshalling(percorso);
-
-			databaseProcessingService.databaseProcessing(assicurati, percorso);
+			String percorso = "C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\startingFolder\\"
+					+ fileEntry.getName();
+			fileProcessingService.unmarshalling(percorso);
 		}
 
 	}
