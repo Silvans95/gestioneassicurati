@@ -22,30 +22,35 @@ public class DatabaseProcessingServiceImpl implements DatabaseProcessingService 
 
 		List<Assicurati.Assicurato> list = assicurati.getAssicurato();
 
-		for (Assicurati.Assicurato ans : list) {
-			if (ans.getNumerosinistri() < 0 || ans.getNumerosinistri() > 10) {
-				fileProcessingService.rejected(percorso);
-				return;
-			}
+		if (list.stream().anyMatch(ass -> ass.getNumerosinistri() < 0 || ass.getNumerosinistri() > 10)) {
+			fileProcessingService.rejected(percorso);
+			return;
 		}
 		inserisciAssicurati(list, percorso);
 	}
 
 	public void inserisciAssicurati(List<Assicurati.Assicurato> list, String percorso) {
-		for (Assicurati.Assicurato ans : list) {
-			if (!StringUtils.isEmpty(assicuratoService.findByCodiceFiscale(ans.getCodiceFiscale()))) {
-				Assicurato assicurato = assicuratoService.findByCodiceFiscale(ans.getCodiceFiscale());
-				assicurato.setNumeroSinistri(assicurato.getNumeroSinistri() + ans.getNumerosinistri());
-				assicuratoService.inserisciNuovo(assicurato);
-			} else {
-				Assicurato assicurato = new Assicurato(ans.getNome(), ans.getCognome(),
-						ans.getDatadinascita().toGregorianCalendar().getTime(), ans.getCodiceFiscale(),
-						ans.getNumerosinistri());
-				assicuratoService.inserisciNuovo(assicurato);
-			}
-		}
-		fileProcessingService.processed(percorso);
 
+		list.stream().forEach(ass -> {
+			if (!StringUtils.isEmpty(assicuratoService.findByCodiceFiscale(ass.getCodiceFiscale()))) {
+				assicuratoService.inserisciNuovo(trasformaSomma(ass));
+			} else {
+				assicuratoService.inserisciNuovo(trasforma(ass));
+			}
+		});
+		fileProcessingService.processed(percorso);
 	}
 
+	public Assicurato trasforma(Assicurati.Assicurato input) {
+		Assicurato assicurato = new Assicurato(input.getNome(), input.getCognome(),
+				input.getDatadinascita().toGregorianCalendar().getTime(), input.getCodiceFiscale(),
+				input.getNumerosinistri());
+		return assicurato;
+	}
+
+	public Assicurato trasformaSomma(Assicurati.Assicurato input) {
+		Assicurato assicurato = assicuratoService.findByCodiceFiscale(input.getCodiceFiscale());
+		assicurato.setNumeroSinistri(assicurato.getNumeroSinistri() + input.getNumerosinistri());
+		return assicurato;
+	}
 }
