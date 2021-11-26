@@ -32,9 +32,11 @@ public class AssicuratoRestController {
 		final File folder = new File("C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\startingFolder\\");
 
 		for (final File fileEntry : folder.listFiles()) {
+			if (fileEntry.getName().endsWith(".xml") || fileEntry.getName().endsWith(".XML")) {
 			String percorso = "C:\\Users\\Solving Team\\Desktop\\esercizio marshall\\startingFolder\\"
 					+ fileEntry.getName();
 			fileProcessingService.unmarshalling(percorso);
+			}
 		}
 
 	}
