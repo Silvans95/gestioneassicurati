@@ -18,15 +18,15 @@ public class FileProcessingServiceImpl implements FileProcessingService {
 	@Autowired
 	DatabaseProcessingService databaseProcessingService;
 
-	public void unmarshalling(String percorsoCartella) {
+	public void unmarshalling(String percorso) {
 		try {
-			File xmlFile = new File(percorsoCartella);
+			File xmlFile = new File(percorso);
 			JAXBContext jaxbContext;
 			jaxbContext = JAXBContext.newInstance(Assicurati.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			Assicurati que = (Assicurati) jaxbUnmarshaller.unmarshal(xmlFile);
 
-			databaseProcessingService.databaseProcessing(que, percorsoCartella);
+			databaseProcessingService.databaseProcessing(que, percorso);
 
 		} catch (JAXBException e) {
 			throw new RuntimeException();

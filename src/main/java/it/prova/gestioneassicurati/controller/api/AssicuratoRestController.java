@@ -23,18 +23,7 @@ import it.prova.gestioneassicurati.xml.Assicurati;
 public class AssicuratoRestController {
 
 	@Autowired
-	AssicuratoService assicuratoService;
-
-	@Autowired
 	FileProcessingService fileProcessingService;
-
-	@Autowired
-	DatabaseProcessingService databaseProcessingService;
-
-	@GetMapping("/list")
-	public List<Assicurato> getAll() {
-		return assicuratoService.listAll();
-	}
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
