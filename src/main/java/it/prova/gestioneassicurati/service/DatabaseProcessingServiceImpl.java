@@ -26,20 +26,26 @@ public class DatabaseProcessingServiceImpl implements DatabaseProcessingService 
 			if (ans.getNumerosinistri() < 0 || ans.getNumerosinistri() > 10) {
 				fileProcessingService.rejected(percorso);
 				return;
-			} else {
-				if (!StringUtils.isEmpty(assicuratoService.findByCodiceFiscale(ans.getCodiceFiscale()))) {
-					Assicurato assicurato = assicuratoService.findByCodiceFiscale(ans.getCodiceFiscale());
-					assicurato.setNumeroSinistri(assicurato.getNumeroSinistri() + ans.getNumerosinistri());
-					assicuratoService.inserisciNuovo(assicurato);
-				} else {
-
-					Assicurato assicurato = new Assicurato(ans.getNome(), ans.getCognome(),
-							ans.getDatadinascita().toGregorianCalendar().getTime(), ans.getCodiceFiscale(),
-							ans.getNumerosinistri());
-					assicuratoService.inserisciNuovo(assicurato);
-				}
-				fileProcessingService.processed(percorso);
 			}
 		}
+		inserisciAssicurati(list, percorso);
 	}
+
+	public void inserisciAssicurati(List<Assicurati.Assicurato> list, String percorso) {
+		for (Assicurati.Assicurato ans : list) {
+			if (!StringUtils.isEmpty(assicuratoService.findByCodiceFiscale(ans.getCodiceFiscale()))) {
+				Assicurato assicurato = assicuratoService.findByCodiceFiscale(ans.getCodiceFiscale());
+				assicurato.setNumeroSinistri(assicurato.getNumeroSinistri() + ans.getNumerosinistri());
+				assicuratoService.inserisciNuovo(assicurato);
+			} else {
+				Assicurato assicurato = new Assicurato(ans.getNome(), ans.getCognome(),
+						ans.getDatadinascita().toGregorianCalendar().getTime(), ans.getCodiceFiscale(),
+						ans.getNumerosinistri());
+				assicuratoService.inserisciNuovo(assicurato);
+			}
+		}
+		fileProcessingService.processed(percorso);
+
+	}
+
 }
